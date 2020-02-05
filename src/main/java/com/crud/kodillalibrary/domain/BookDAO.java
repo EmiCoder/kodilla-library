@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 @Transactional
 public interface BookDAO extends CrudRepository<Book, Integer> {
-    List<Book> findByItemId(Long itemId);
+    List<Book> findByItemId(int itemId);
 }

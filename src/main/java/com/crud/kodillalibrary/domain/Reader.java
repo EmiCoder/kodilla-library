@@ -15,6 +15,13 @@ import java.time.LocalDate;
 @Entity(name="READERS")
 public class Reader {
 
+
+    public Reader(String firstname, String lastname, LocalDate accountCreatingDate) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.accountCreatingDate = accountCreatingDate;
+    }
+
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
@@ -23,6 +30,6 @@ public class Reader {
     @Column(name="LAST_NAME")
     private String lastname;
     @Column(name="ACCOUNT_CREATING_DATE")
-    private LocalDate AccountCreatingDate;
+    private LocalDate accountCreatingDate;
 
 }

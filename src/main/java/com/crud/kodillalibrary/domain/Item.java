@@ -13,6 +13,8 @@ import javax.persistence.*;
 @Entity(name="ITEMS")
 public class Item {
 
+    private Book book;
+
     public Item(String status) {
         this.status = status;
     }
@@ -20,11 +22,16 @@ public class Item {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
+
     @Column(name="BOOK_STATUS")
     private String status;
 
     @ManyToOne
     @JoinColumn(name="BOOK_ID")
-    private Book book;
+    public int getBookID() {
+        return book.getId();
+    }
+
+
 
 }

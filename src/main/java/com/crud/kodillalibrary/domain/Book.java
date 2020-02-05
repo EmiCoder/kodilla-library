@@ -15,6 +15,12 @@ import java.util.List;
 @Entity(name="BOOKS")
 public class Book {
 
+    public Book(String title, String author, LocalDate published) {
+        this.title = title;
+        this.author = author;
+        this.published = published;
+    }
+
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
@@ -32,5 +38,8 @@ public class Book {
             fetch=FetchType.LAZY
     )
     private List<Item> items = new ArrayList<>();
+
+    @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    private Loan loan;
 
 }
