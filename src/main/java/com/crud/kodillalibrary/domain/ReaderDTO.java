@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @Getter
 @AllArgsConstructor
 public class ReaderDTO {
-    private Long id;
+    private int id;
     private String firstname;
     private String lastname;
     private LocalDate AccountCreatingDate;

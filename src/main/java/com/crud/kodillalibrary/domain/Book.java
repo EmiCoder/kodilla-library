@@ -17,12 +17,20 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
+    private int id;
     @Column(name="TITLE")
     private String title;
     @Column(name="AUTHOR")
     private String author;
     @Column(name="PUBLISHED")
     private LocalDate published;
+
+    @OneToMany(
+            targetEntity=Item.class,
+            mappedBy="book",
+            cascade=CascadeType.ALL,
+            fetch=FetchType.LAZY
+    )
+    private List<Item> items = new ArrayList<>();
 
 }

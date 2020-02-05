@@ -17,7 +17,7 @@ public class Reader {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
+    private int id;
     @Column(name="FIRST_NAME")
     private String firstname;
     @Column(name="LAST_NAME")
