@@ -3,11 +3,13 @@ package com.crud.kodillalibrary.domain.main;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -24,10 +26,6 @@ public class Loan {
     private Reader reader;
     private Item item;
 
-    public Loan(LocalDate loanDate, LocalDate returnDate) {
-        this.loanDate = loanDate;
-        this.returnDate = returnDate;
-    }
 
     @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinColumn(name="READER_ID")
@@ -35,9 +33,11 @@ public class Loan {
         return reader;
     }
 
-    @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name="ITEM_ID")
     public Item getItem() {
         return item;
     }
+
+
 }

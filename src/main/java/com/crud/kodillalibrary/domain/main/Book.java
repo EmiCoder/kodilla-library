@@ -34,7 +34,6 @@ public class Book {
             cascade=CascadeType.ALL,
             fetch=FetchType.LAZY
     )
-    @JoinColumn(name="AMOUNT_OF_BOOK")
     private List<Item> items = new ArrayList<>();
 
 

@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Getter
@@ -30,9 +32,13 @@ public class Item {
         return book;
     }
 
-    @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-    @JoinColumn(name="LOAN_ID")
-    private Loan loan;
+    @OneToMany(
+            targetEntity=Loan.class,
+            mappedBy="item",
+            cascade=CascadeType.ALL,
+            fetch=FetchType.LAZY
+    )
+    private List<Loan> loans = new ArrayList<>();
 
 
 
