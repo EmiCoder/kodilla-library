@@ -17,7 +17,15 @@ import java.util.List;
 @Table(name="ITEMS")
 public class Item {
 
+    @ManyToOne
+    @JoinColumn(name="BOOK_ID")
     private Book book;
+    @OneToMany(
+            targetEntity=Loan.class,
+            mappedBy="item",
+            cascade=CascadeType.ALL,
+            fetch=FetchType.LAZY
+    )
     private List<Loan> loans = new ArrayList<>();
 
     @Id
@@ -26,23 +34,5 @@ public class Item {
 
     @Column(name="BOOK_STATUS")
     private String status;
-
-    @ManyToOne
-    @JoinColumn(name="BOOK_ID")
-    public Book getBook() {
-        return book;
-    }
-
-    @OneToMany(
-            targetEntity=Loan.class,
-            mappedBy="item",
-            cascade=CascadeType.ALL,
-            fetch=FetchType.LAZY
-    )
-    public List<Loan> getLoans() {
-        return loans;
-    }
-
-
 
 }

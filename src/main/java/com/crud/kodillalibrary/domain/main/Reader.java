@@ -8,6 +8,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Getter
@@ -18,6 +20,13 @@ import java.time.LocalDate;
 @Table(name="READERS")
 public class Reader {
 
+    @OneToMany(
+            targetEntity=Loan.class,
+            mappedBy="reader",
+            cascade=CascadeType.ALL,
+            fetch=FetchType.LAZY
+    )
+    private List<Loan> loans = new ArrayList<>();
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
@@ -27,9 +36,5 @@ public class Reader {
     private String lastname;
     @Column(name="ACCOUNT_CREATING_DATE")
     private LocalDate accountCreatingDate;
-
-    @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-    @JoinColumn(name="LOAN_ID")
-    private Loan loan;
 
 }

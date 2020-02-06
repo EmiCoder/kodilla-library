@@ -23,21 +23,12 @@ public class Loan {
     private LocalDate loanDate;
     @Column(name="RETURN_DATE")
     private LocalDate returnDate;
-    private Reader reader;
-    private Item item;
-
-
-    @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name="READER_ID")
-    public Reader getReader() {
-        return reader;
-    }
-
+    private Reader reader;
     @ManyToOne
     @JoinColumn(name="ITEM_ID")
-    public Item getItem() {
-        return item;
-    }
+    private Item item;
 
 
 }
