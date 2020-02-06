@@ -1,5 +1,6 @@
-package com.crud.kodillalibrary.domain;
+package com.crud.kodillalibrary.domain.dto;
 
+import com.crud.kodillalibrary.domain.main.Loan;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -12,4 +13,5 @@ public class ReaderDTO {
     private String firstname;
     private String lastname;
     private LocalDate accountCreatingDate;
+    private Loan loan;
 }

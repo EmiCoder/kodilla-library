@@ -1,26 +1,21 @@
-package com.crud.kodillalibrary.domain;
+package com.crud.kodillalibrary.domain.main;
 
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name="READERS")
 public class Reader {
-
-
-    public Reader(String firstname, String lastname, LocalDate accountCreatingDate) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.accountCreatingDate = accountCreatingDate;
-    }
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -31,5 +26,9 @@ public class Reader {
     private String lastname;
     @Column(name="ACCOUNT_CREATING_DATE")
     private LocalDate accountCreatingDate;
+
+    @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinColumn(name="LOAN_ID")
+    private Loan loan;
 
 }

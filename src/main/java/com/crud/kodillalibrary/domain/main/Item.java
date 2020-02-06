@@ -1,23 +1,20 @@
-package com.crud.kodillalibrary.domain;
-
+package com.crud.kodillalibrary.domain.main;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name="ITEMS")
 public class Item {
 
     private Book book;
-
-    public Item(String status) {
-        this.status = status;
-    }
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -28,9 +25,13 @@ public class Item {
 
     @ManyToOne
     @JoinColumn(name="BOOK_ID")
-    public int getBookID() {
-        return book.getId();
+    public Book getBook() {
+        return book;
     }
+
+    @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinColumn(name="LOAN_ID")
+    private Loan loan;
 
 
 

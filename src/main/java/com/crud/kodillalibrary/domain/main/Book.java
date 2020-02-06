@@ -1,8 +1,9 @@
-package com.crud.kodillalibrary.domain;
+package com.crud.kodillalibrary.domain.main;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -10,16 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name="BOOKS")
 public class Book {
-
-    public Book(String title, String author, LocalDate published) {
-        this.title = title;
-        this.author = author;
-        this.published = published;
-    }
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -29,7 +25,7 @@ public class Book {
     @Column(name="AUTHOR")
     private String author;
     @Column(name="PUBLISHED")
-    private LocalDate published;
+    private String published;
 
     @OneToMany(
             targetEntity=Item.class,
@@ -37,9 +33,9 @@ public class Book {
             cascade=CascadeType.ALL,
             fetch=FetchType.LAZY
     )
+    @JoinColumn(name="AMOUNT_OF_BOOK")
     private List<Item> items = new ArrayList<>();
 
-    @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-    private Loan loan;
+
 
 }

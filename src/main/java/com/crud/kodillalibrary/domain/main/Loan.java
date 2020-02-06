@@ -1,4 +1,4 @@
-package com.crud.kodillalibrary.domain;
+package com.crud.kodillalibrary.domain.main;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,6 +13,9 @@ import java.time.LocalDate;
 @Entity(name="LOAN_LIST")
 public class Loan {
 
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private int id;
     @Column(name="LOAN_DATE")
     private LocalDate loanDate;
     @Column(name="RETURN_DATE")
@@ -27,13 +30,13 @@ public class Loan {
 
     @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinColumn(name="READER_ID")
-    public int getReaderID() {
-        return reader.getId();
+    public Reader getReader() {
+        return reader;
     }
 
     @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinColumn(name="ITEM_ID")
-    public int getItemId() {
-        return item.getId();
+    public Item getItem() {
+        return item;
     }
 }
