@@ -18,6 +18,7 @@ import java.util.List;
 public class Item {
 
     private Book book;
+    private List<Loan> loans = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -38,7 +39,9 @@ public class Item {
             cascade=CascadeType.ALL,
             fetch=FetchType.LAZY
     )
-    private List<Loan> loans = new ArrayList<>();
+    public List<Loan> getLoans() {
+        return loans;
+    }
 
 
 
