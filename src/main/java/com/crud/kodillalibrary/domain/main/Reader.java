@@ -14,7 +14,8 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name="READERS")
+@Entity
+@Table(name="READERS")
 public class Reader {
 
     @Id

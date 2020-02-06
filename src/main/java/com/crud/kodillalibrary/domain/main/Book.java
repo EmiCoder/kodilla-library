@@ -14,7 +14,8 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name="BOOKS")
+@Entity
+@Table(name="BOOKS")
 public class Book {
 
     @Id

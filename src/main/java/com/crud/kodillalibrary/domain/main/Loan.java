@@ -10,7 +10,8 @@ import java.time.LocalDate;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name="LOAN_LIST")
+@Entity
+@Table(name="LOANS")
 public class Loan {
 
     @Id

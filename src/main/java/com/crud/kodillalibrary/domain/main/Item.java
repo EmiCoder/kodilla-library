@@ -11,7 +11,8 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name="ITEMS")
+@Entity
+@Table(name="ITEMS")
 public class Item {
 
     private Book book;
