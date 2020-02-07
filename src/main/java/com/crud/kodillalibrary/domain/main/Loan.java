@@ -23,9 +23,11 @@ public class Loan {
     private LocalDate loanDate;
     @Column(name="RETURN_DATE")
     private LocalDate returnDate;
+
     @ManyToOne
     @JoinColumn(name="READER_ID")
     private Reader reader;
+
     @ManyToOne
     @JoinColumn(name="ITEM_ID")
     private Item item;

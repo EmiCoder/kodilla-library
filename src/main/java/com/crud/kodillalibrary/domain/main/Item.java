@@ -17,9 +17,17 @@ import java.util.List;
 @Table(name="ITEMS")
 public class Item {
 
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private int id;
+
+    @Column(name="ITEM_STATUS")
+    private String status;
+
     @ManyToOne
     @JoinColumn(name="BOOK_ID")
     private Book book;
+
     @OneToMany(
             targetEntity=Loan.class,
             mappedBy="item",
@@ -27,12 +35,4 @@ public class Item {
             fetch=FetchType.LAZY
     )
     private List<Loan> loans = new ArrayList<>();
-
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private int id;
-
-    @Column(name="BOOK_STATUS")
-    private String status;
-
 }
