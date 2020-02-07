@@ -1,6 +1,5 @@
 package com.crud.kodillalibrary.domain.dao;
 
-import com.crud.kodillalibrary.domain.main.Book;
 import com.crud.kodillalibrary.domain.main.Item;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

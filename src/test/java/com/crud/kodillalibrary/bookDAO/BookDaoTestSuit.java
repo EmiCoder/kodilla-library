@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Optional;
 
 @RunWith(SpringRunner.class)
@@ -34,7 +35,7 @@ public class BookDaoTestSuit {
             book_2.setPublished("1926");
             bookDAO.save(book_2);
 
-        int id = book.getId();
+        Integer id = book.getId();
         Optional<Book> foundedBook = bookDAO.findById(id);
         Assert.assertTrue(foundedBook.isPresent());
         Assert.assertEquals(2, bookDAO.findByTitle("Kubus Puchatek").size());
