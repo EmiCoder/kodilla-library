@@ -20,54 +20,54 @@ public class LoanController {
         return new ArrayList<>();
     }
 
-    @RequestMapping(method=RequestMethod.GET, value="getLoanById")
-    public LoanDTO getLoanById(Integer id) {
-        Reader reader = new Reader();
-                reader.setFirstname("Emilia");
-                reader.setLastname("Traczyk");
-                reader.setAccountCreatingDate("2010.01.23");
-
-        Item item = new Item();
-                item.setStatus("Lost");
-                Book book = new Book();
-                        book.setTitle("Title");
-                        book.setAuthor("Author");
-                        book.setPublished("2012");
-                item.setBook(book);
-
-        return new LoanDTO(1,
-                            LocalDate.of(2012, 01, 12),
-                            LocalDate.of(2012, 01, 22),
-                            reader,
-                            item);
-    }
+//    @RequestMapping(method=RequestMethod.GET, value="getLoanById")
+//    public LoanDTO getLoanById(Integer id) {
+//        Reader reader = new Reader();
+//                reader.setFirstname("Emilia");
+//                reader.setLastname("Traczyk");
+//                reader.setAccountCreatingDate("2010.01.23");
+//
+//        Item item = new Item();
+//                item.setStatus("Lost");
+//                Book book = new Book();
+//                        book.setTitle("Title");
+//                        book.setAuthor("Author");
+//                        book.setPublished("2012");
+//                item.setBook(book);
+//
+//        return new LoanDTO(1,
+//                            LocalDate.of(2012, 01, 12),
+//                            LocalDate.of(2012, 01, 22),
+//                            reader,
+//                            item);
+//    }
 
     @RequestMapping(method=RequestMethod.DELETE, value="deleteLoanById")
     public void deleteLoanById(Integer id) {
 
     }
 
-    @RequestMapping(method=RequestMethod.PUT, value="updateLoan")
-    public LoanDTO updateLoan(LoanDTO loanDTO) {
-        Reader reader = new Reader();
-        reader.setFirstname("Emilia");
-        reader.setLastname("Traczyk");
-        reader.setAccountCreatingDate("2010.01.23");
-
-        Item item = new Item();
-        item.setStatus("Lost");
-        Book book = new Book();
-        book.setTitle("Title");
-        book.setAuthor("Author");
-        book.setPublished("2012");
-        item.setBook(book);
-
-        return new LoanDTO(1,
-                LocalDate.of(2012, 01, 12),
-                LocalDate.of(2012, 01, 22),
-                reader,
-                item);
-    }
+//    @RequestMapping(method=RequestMethod.PUT, value="updateLoan")
+//    public LoanDTO updateLoan(LoanDTO loanDTO) {
+//        Reader reader = new Reader();
+//        reader.setFirstname("Emilia");
+//        reader.setLastname("Traczyk");
+//        reader.setAccountCreatingDate("2010.01.23");
+//
+//        Item item = new Item();
+//        item.setStatus("Lost");
+//        Book book = new Book();
+//        book.setTitle("Title");
+//        book.setAuthor("Author");
+//        book.setPublished("2012");
+//        item.setBook(book);
+//
+//        return new LoanDTO(1,
+//                LocalDate.of(2012, 01, 12),
+//                LocalDate.of(2012, 01, 22),
+//                reader,
+//                item);
+//    }
 
     @RequestMapping(method=RequestMethod.POST, value="createLoan")
     public void createLoan(LoanDTO loanDTO) {

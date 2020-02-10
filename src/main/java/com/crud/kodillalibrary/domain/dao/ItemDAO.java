@@ -1,5 +1,6 @@
 package com.crud.kodillalibrary.domain.dao;
 
+import com.crud.kodillalibrary.domain.main.Book;
 import com.crud.kodillalibrary.domain.main.Item;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -11,6 +12,6 @@ import java.util.List;
 @Transactional
 public interface ItemDAO extends CrudRepository<Item, Integer> {
     List<Item> findByStatus(String status);
-    List<Item> findByBook_Id(Integer book_id);
+//    List<Item> findByBookId(Book book);
     List<Item> findByBook(String title);
 }

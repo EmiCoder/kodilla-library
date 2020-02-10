@@ -1,8 +1,13 @@
 package com.crud.kodillalibrary.controller;
 
 import com.crud.kodillalibrary.domain.dto.ItemDTO;
+import com.crud.kodillalibrary.domain.main.Book;
+import com.crud.kodillalibrary.domain.main.Item;
+import com.crud.kodillalibrary.mapper.BookMapper;
 import com.crud.kodillalibrary.mapper.ItemMapper;
+import com.crud.kodillalibrary.repository.BookRepository;
 import com.crud.kodillalibrary.repository.ItemRepository;
+import com.crud.kodillalibrary.service.BookService;
 import com.crud.kodillalibrary.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +26,14 @@ public class ItemController {
     ItemMapper itemMapper;
     @Autowired
     ItemService itemService;
+
+
+    @Autowired
+    BookService bookService;
+    @Autowired
+    BookMapper bookMapper;
+    @Autowired
+    BookRepository bookRepository;
 
     @RequestMapping(method=RequestMethod.GET, value="getItems")
     List<ItemDTO> getItems() {

@@ -1,5 +1,6 @@
 package com.crud.kodillalibrary.service;
-
+import com.crud.kodillalibrary.domain.dto.ItemDTO;
+import com.crud.kodillalibrary.domain.main.Book;
 import com.crud.kodillalibrary.domain.main.Item;
 import com.crud.kodillalibrary.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +14,19 @@ public class ItemService {
     @Autowired
     ItemRepository itemRepository;
 
+    @Autowired
+    BookService bookService;
+
     public List<Item> getItems() {
         return itemRepository.findAll();
     }
 
     public Item saveItem(Item item) {
+        item.setBook(bookService.getBookById(item.getBook().getId()));
         return itemRepository.save(item);
     }
+
+
 
     public Item getItemById(final Integer id) {
         return itemRepository.findById(id).get();

@@ -28,13 +28,13 @@ public class ItemDaoTestSuit {
             book_1.setAuthor("Alan Alexander Milne");
             book_1.setPublished("1926");
             bookDAO.save(book_1);
-            Integer book_1_id = book_1.getId();
+            Integer book_1_id = book_1.getBookId();
 
         Item item_1 = new Item();
             item_1.setStatus("InUse");
             item_1.setBook(book_1);
             itemDAO.save(item_1);
-        Integer book_1_id_in_itemsTable = item_1.getBook().getId();
+        Integer book_1_id_in_itemsTable = item_1.getBook().getBookId();
 
         Book book_2 = new Book();
             book_2.setTitle("Kubus Puchatek");
@@ -61,7 +61,7 @@ public class ItemDaoTestSuit {
         Assert.assertEquals(2, itemDAO.findByStatus("InUse").size());
         Assert.assertEquals(1, itemDAO.findByStatus("Lost").size());
         Assert.assertEquals(book_1_id, book_1_id_in_itemsTable);
-        Assert.assertEquals(1, itemDAO.findByBook_Id(book_1_id).size());
+//        Assert.assertEquals(1, itemDAO.findByBookId(book_1_id).size());
 
         bookDAO.deleteAll();
         itemDAO.deleteAll();

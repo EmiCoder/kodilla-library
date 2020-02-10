@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +17,7 @@ import java.util.List;
 @Table(name="BOOKS")
 public class Book {
 
-    public Book(){}
+
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
