@@ -18,7 +18,7 @@ public class Loan {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int id;
+    private Integer id;
     @Column(name="LOAN_DATE")
     private LocalDate loanDate;
     @Column(name="RETURN_DATE")

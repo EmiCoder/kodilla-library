@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,8 @@ import java.util.List;
 @Entity
 @Table(name="BOOKS")
 public class Book {
+
+    public Book(){}
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -32,6 +35,7 @@ public class Book {
             mappedBy="book",
             cascade=CascadeType.ALL,
             fetch=FetchType.LAZY
+
     )
     private List<Item> items = new ArrayList<>();
 

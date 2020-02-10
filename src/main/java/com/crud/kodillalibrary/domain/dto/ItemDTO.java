@@ -11,9 +11,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ItemDTO {
 
-    private int id;
+    private Integer id;
     private String status;
     private Book book;
-    private Item item;
 
 }

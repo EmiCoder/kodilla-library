@@ -19,7 +19,7 @@ public class Item {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int id;
+    private Integer id;
 
     @Column(name="ITEM_STATUS")
     private String status;
