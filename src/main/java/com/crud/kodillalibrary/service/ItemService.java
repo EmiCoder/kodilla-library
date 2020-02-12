@@ -1,6 +1,4 @@
 package com.crud.kodillalibrary.service;
-import com.crud.kodillalibrary.domain.dto.ItemDTO;
-import com.crud.kodillalibrary.domain.main.Book;
 import com.crud.kodillalibrary.domain.main.Item;
 import com.crud.kodillalibrary.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +25,12 @@ public class ItemService {
     }
 
 
+    public Item updateItemStatus(int itemId, String newStatus) {
+        Item itemById=getItemById(itemId);
+             itemById.setStatus(newStatus);
+             saveItem(itemById);
+        return itemById;
+    }
 
     public Item getItemById(final Integer id) {
         return itemRepository.findById(id).get();

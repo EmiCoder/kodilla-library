@@ -1,6 +1,4 @@
 package com.crud.kodillalibrary.repository;
-
-import com.crud.kodillalibrary.domain.dto.BookDTO;
 import com.crud.kodillalibrary.domain.main.Book;
 import org.springframework.data.repository.CrudRepository;
 
@@ -20,5 +18,5 @@ public interface BookRepository extends CrudRepository<Book, Integer> {
     @Override
     void deleteById(Integer id);
 
-
+    List<Book> findByTitle(String title);
 }

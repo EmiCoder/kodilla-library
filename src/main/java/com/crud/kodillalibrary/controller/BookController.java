@@ -7,8 +7,6 @@ import com.crud.kodillalibrary.repository.BookRepository;
 import com.crud.kodillalibrary.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -32,6 +30,11 @@ public class BookController {
     @RequestMapping(method=RequestMethod.GET, value="getBookById")
     public BookDTO getBookById(@RequestParam Integer id){
         return bookMapper.mapToBookDTO(bookService.getBookById(id));
+    }
+
+    @RequestMapping(method=RequestMethod.GET, value="getBooksByTitle")
+    public List<Book> findByTitle(@RequestParam String title) {
+        return bookRepository.findByTitle(title);
     }
 
     @RequestMapping(method=RequestMethod.DELETE, value="deleteBookById")

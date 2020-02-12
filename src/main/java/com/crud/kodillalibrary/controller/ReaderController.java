@@ -2,39 +2,47 @@ package com.crud.kodillalibrary.controller;
 
 
 import com.crud.kodillalibrary.domain.dto.ReaderDTO;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import com.crud.kodillalibrary.mapper.ReaderMapper;
+import com.crud.kodillalibrary.service.ReaderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+
 import java.util.List;
+
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
 @RequestMapping("/reader")
 public class ReaderController {
 
+    @Autowired
+    ReaderService readerService;
+    @Autowired
+    ReaderMapper readerMapper;
+
     @RequestMapping(method=RequestMethod.GET, value="getReaders")
     List<ReaderDTO> getReaders() {
-        return new ArrayList<>();
+        return readerMapper.mapToReaderDTOList(readerService.getAllReaders());
     }
 
     @RequestMapping(method=RequestMethod.GET, value="getReaderById")
-    public ReaderDTO getReaderById(Integer id) {
-        return new ReaderDTO(1, "Emilia", "Traczyk", "01.01.2016");
+    public ReaderDTO getReaderById(@RequestParam Integer id) {
+        return readerMapper.mapToReaderDTO(readerService.getReaderById(id));
     }
 
     @RequestMapping(method=RequestMethod.DELETE, value="deleteReaderById")
-    public void deleteReaderById(Integer id) {
-
+    public void deleteReaderById(@RequestParam Integer id) {
+        readerService.deleteById(id);
     }
 
     @RequestMapping(method=RequestMethod.PUT, value="updateReader")
-    public ReaderDTO updateReader(ReaderDTO readerDTO) {
-        return new ReaderDTO(1, "Updated firstname", "Updated lastname", "Updated account");
+    public ReaderDTO updateReader(@RequestBody ReaderDTO readerDTO) {
+        return readerMapper.mapToReaderDTO(readerService.save(readerMapper.mapToReader(readerDTO)));
     }
 
-    @RequestMapping(method=RequestMethod.POST, value="createReader")
-    public void createReader(ReaderDTO ReaderDTO) {
-
+    @RequestMapping(method=RequestMethod.POST, value="createReader", consumes=APPLICATION_JSON_VALUE)
+    public void createReader(@RequestBody ReaderDTO readerDTO) {
+        readerService.save(readerMapper.mapToReader(readerDTO));
     }
 }

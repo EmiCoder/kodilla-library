@@ -20,20 +20,12 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping("/item")
 public class ItemController {
 
-    @Autowired
-    ItemRepository itemRepository;
+
     @Autowired
     ItemMapper itemMapper;
     @Autowired
     ItemService itemService;
 
-
-    @Autowired
-    BookService bookService;
-    @Autowired
-    BookMapper bookMapper;
-    @Autowired
-    BookRepository bookRepository;
 
     @RequestMapping(method=RequestMethod.GET, value="getItems")
     List<ItemDTO> getItems() {
@@ -50,9 +42,10 @@ public class ItemController {
         itemService.deleteItemById(id);
     }
 
+
     @RequestMapping(method=RequestMethod.PUT, value="updateItem")
     public ItemDTO updateItem(@RequestBody ItemDTO itemDTO) {
-        return itemMapper.mapToItemDTO(itemService.saveItem(itemMapper.mapToItem(itemDTO)));
+        return itemMapper.mapToItemDTO(itemService.updateItemStatus(itemDTO.getId(), itemDTO.getStatus()));
     }
 
     @RequestMapping(method=RequestMethod.POST, value="createItem", consumes=APPLICATION_JSON_VALUE)

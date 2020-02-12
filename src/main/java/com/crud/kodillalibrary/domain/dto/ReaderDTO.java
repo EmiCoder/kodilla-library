@@ -1,6 +1,4 @@
 package com.crud.kodillalibrary.domain.dto;
-
-import com.crud.kodillalibrary.domain.main.Loan;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

@@ -3,10 +3,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 @Getter
@@ -35,4 +37,6 @@ public class Item {
             fetch=FetchType.LAZY
     )
     private List<Loan> loans = new ArrayList<>();
+
+
 }
