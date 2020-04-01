@@ -22,6 +22,7 @@ public class ItemMapper {
 
     public Item mapToItem(final ItemDTO itemDTO) {
         Item item = new Item();
+                item.setId(itemDTO.getId());
                 item.setStatus(itemDTO.getStatus());
                 Book book = new Book();
                     book.setId(bookService.getBookById(itemDTO.getBookId()).getId());

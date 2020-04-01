@@ -40,7 +40,7 @@ public class BookDaoTestSuit {
         Assert.assertTrue(foundedBook.isPresent());
         Assert.assertEquals(2, bookDAO.findByTitle("Kubus Puchatek").size());
 
-        bookDAO.deleteById(id);
+
     }
 
 

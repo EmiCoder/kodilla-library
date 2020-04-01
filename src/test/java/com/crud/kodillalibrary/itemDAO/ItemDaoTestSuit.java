@@ -28,13 +28,13 @@ public class ItemDaoTestSuit {
             book_1.setAuthor("Alan Alexander Milne");
             book_1.setPublished("1926");
             bookDAO.save(book_1);
-            Integer book_1_id = book_1.getBookId();
+            Integer book_1_id = book_1.getId();
 
         Item item_1 = new Item();
             item_1.setStatus("InUse");
             item_1.setBook(book_1);
             itemDAO.save(item_1);
-        Integer book_1_id_in_itemsTable = item_1.getBook().getBookId();
+        Integer book_1_id_in_itemsTable = item_1.getBook().getId();
 
         Book book_2 = new Book();
             book_2.setTitle("Kubus Puchatek");

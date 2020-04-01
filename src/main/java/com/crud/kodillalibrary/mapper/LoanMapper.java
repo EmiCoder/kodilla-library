@@ -20,6 +20,7 @@ public class LoanMapper {
 
     public Loan mapToLoan(final LoanDTO loanDTO) {
         Loan loan = new Loan();
+                loan.setId(loanDTO.getId());
                 loan.setLoanDate(loanDTO.getLoanDate());
                 loan.setReturnDate(loanDTO.getReturnDate());
                 loan.setReader(readerService.getReaderById(loanDTO.getReaderId()));

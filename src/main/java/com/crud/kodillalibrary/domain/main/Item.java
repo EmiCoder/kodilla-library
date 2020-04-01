@@ -11,6 +11,12 @@ import java.util.List;
 import java.util.Objects;
 
 
+@NamedNativeQuery(
+        name = "Item.findByTitle",
+        query = "select b.TITLE, i.ITEM_STATUS, i.id from items as i, books as b where i.BOOK_ID = b.id and b.TITLE = :TITLE",
+        resultClass = Item.class
+)
+
 @Getter
 @Setter
 @AllArgsConstructor
