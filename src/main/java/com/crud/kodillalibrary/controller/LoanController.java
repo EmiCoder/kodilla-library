@@ -24,12 +24,13 @@ public class LoanController {
     LoanService service;
 
     @GetMapping
-    public ResponseEntity<?> getLoans() throws NotFoundException {
+    public ResponseEntity<?> getLoans() {
         List<LoanDTO> list = mapper.mapToLoanDTOList(service.getLoans());
         if (!list.isEmpty()) {
             return ResponseEntity.ok().body(list);
         } else {
-            throw new NotFoundException("List not found");
+            return ResponseEntity.badRequest().body("List not found");
+//            throw new NotFoundException("List not found");
         }
     }
 

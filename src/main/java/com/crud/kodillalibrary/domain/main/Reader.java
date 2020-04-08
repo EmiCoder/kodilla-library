@@ -37,4 +37,12 @@ public class Reader {
     )
     private List<Loan> loans = new ArrayList<>();
 
+    @OneToMany(
+            targetEntity=LoanProcess.class,
+            mappedBy="reader",
+            cascade=CascadeType.ALL,
+            fetch=FetchType.LAZY
+    )
+    private List<LoanProcess> loanProcesses = new ArrayList<>();
+
 }

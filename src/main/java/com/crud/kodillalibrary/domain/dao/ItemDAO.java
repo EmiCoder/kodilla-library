@@ -13,7 +13,5 @@ import java.util.List;
 @Repository
 @Transactional
 public interface ItemDAO extends CrudRepository<Item, Integer> {
-    @Query
-    List<Item> findByTitle(@Param("TITLE") String title);
     List<Item> findByStatus(String status);
 }
