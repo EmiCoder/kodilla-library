@@ -2,6 +2,7 @@ package com.crud.kodillalibrary.controller;
 
 import com.crud.kodillalibrary.domain.dto.BookDTO;
 import com.crud.kodillalibrary.domain.dto.LoanProcessDTO;
+import com.crud.kodillalibrary.domain.main.Book;
 import com.crud.kodillalibrary.domain.main.Item;
 import com.crud.kodillalibrary.domain.main.LoanProcess;
 import com.crud.kodillalibrary.domain.main.Reader;
@@ -38,8 +39,6 @@ public class LoanProcessController {
     private ReaderService readerService;
     @Autowired
     private ItemService itemService;
-    @Autowired
-    private BookService bookService;
 
 
 
@@ -54,11 +53,14 @@ public class LoanProcessController {
     }
 
     @PostMapping
-    public LoanProcess createLoanProcess(@RequestBody LoanProcessDTO loanProcessDTO) throws URISyntaxException {
+    public ResponseEntity createLoanProcess(@RequestBody LoanProcessDTO loanProcessDTO) throws URISyntaxException {
         if (doesExistReader(loanProcessDTO.getReaderId())) {
             if (isPossibleToRentTheTitle(loanProcessDTO.getBookTitle())) {
                 changeItemStatus(loanProcessDTO);
-                return service.save(mapper.mapToLoan(loanProcessDTO));
+                LoanProcessDTO result = mapper.mapToLoanPrecessDto(service.save(mapper.mapToLoan(loanProcessDTO)));
+                return ResponseEntity.created(new URI("/lonaProcess/" + result.getId()))
+                        .headers(HeaderUtil.createEntityCreationAlert("KodillaLibraryApplication", false, "loanProcess", result.getId().toString()))
+                        .body(result);
             }
         } else {
             if (isPossibleToRentTheTitle(loanProcessDTO.getBookTitle())) {
@@ -69,10 +71,15 @@ public class LoanProcessController {
                 loanProcess.setReturnDate(loanProcessDTO.getReturnDate());
                 loanProcess.setReader(reader);
                 changeItemStatus(loanProcessDTO);
-                return service.save(loanProcess);
+                LoanProcessDTO result = mapper.mapToLoanPrecessDto(service.save(loanProcess));
+                return ResponseEntity.created(new URI("/loanProcess/" + result.getId()))
+                        .headers(HeaderUtil.createEntityCreationAlert("KodillaLibraryApplication", false, "loanProcess", result.getId().toString()))
+                        .body(result);
             }
-        } return null;
+        } return  ResponseEntity.badRequest().body("Can not to create loan.");
     }
+
+
 
     private boolean doesExistReader(Integer id) {
         if (readerService.getAllReaders().stream().anyMatch(reader -> reader.getId().equals(id))) {
@@ -81,8 +88,10 @@ public class LoanProcessController {
     }
 
     private boolean isPossibleToRentTheTitle(String title) {
-        if (bookService.getAllBooks().stream().anyMatch(book -> book.getTitle().equals(title))) {
-            return true;
+        for (Item item : itemService.getItems()) {
+            if (item.getBook().getTitle().equals(title) && item.getStatus().equals("toRent")) {
+                return true;
+            }
         } return false;
     }
 

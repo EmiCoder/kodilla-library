@@ -11,9 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
-import java.util.List;
 
+@Transactional
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class LoanProcessDAOTestSuit {
@@ -25,22 +26,21 @@ public class LoanProcessDAOTestSuit {
 
     @Test
     public void testLoanProcessDaoSave() {
-//        loanProcessDAO.deleteAll();
-//        readerDAO.deleteAll();
-//        Reader reader = new Reader();
-//        reader.setFirstname("Thomas");
-//        reader.setLastname("Carry");
-//        reader.setAccountCreatingDate("2014.01.03");
-//        readerDAO.save(reader);
-//
-//        LoanProcess loanProcess = new LoanProcess(5);
-//                    loanProcess.setReader(reader);
-//        loanProcessDAO.save(loanProcess);
-//
-////        Assert.assertEquals(1, loanProcessDAO.findByReader(reader.getId()).size());
-//        readerDAO.deleteAll();
-//        loanProcessDAO.deleteAll();
-//        readerDAO.deleteById(reader.getId());
-//        loanProcessDAO.deleteById(loanProcess.getId());
+        Reader reader = new Reader();
+        reader.setFirstname("Thomas");
+        reader.setLastname("Carry");
+        reader.setAccountCreatingDate("2014.01.03");
+        readerDAO.save(reader);
+
+        LoanProcess loanProcess = new LoanProcess();
+                    loanProcess.setReader(reader);
+                    loanProcess.setLoanDate(LocalDate.now());
+                    loanProcess.setReturnDate(LocalDate.now().plusDays(5));
+                    loanProcess.setBookTitle("Maly Ksiaze");
+        loanProcessDAO.save(loanProcess);
+
+        Assert.assertEquals(1, loanProcessDAO.findByReader(reader).size());
+        readerDAO.deleteById(reader.getId());
+        loanProcessDAO.deleteById(loanProcess.getId());
     }
 }

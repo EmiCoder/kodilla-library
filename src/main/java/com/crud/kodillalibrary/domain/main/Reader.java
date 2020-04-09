@@ -41,7 +41,7 @@ public class Reader {
             targetEntity=LoanProcess.class,
             mappedBy="reader",
             cascade=CascadeType.ALL,
-            fetch=FetchType.LAZY
+            fetch=FetchType.EAGER
     )
     private List<LoanProcess> loanProcesses = new ArrayList<>();
 
