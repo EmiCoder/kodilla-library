@@ -35,5 +35,4 @@ public class Loan {
     @JoinColumn(name="ITEM_ID")
     private Item item;
 
-
 }

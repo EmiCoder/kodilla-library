@@ -28,12 +28,13 @@ public class LoanProcessService {
         return repository.findById(id).get();
     }
 
-    public void deleteLoanPrcessById(Integer id) {
+
+    public void deleteLoanProcessById(Integer id) {
         repository.deleteById(id);
     }
 
     public List<LoanProcess> findLoanPrecessByReaderId(Integer readerId) {
         return repository.findAll().stream()
-                .filter(loanProcess -> readerId.equals(loanProcess.getReader().getId())).collect(Collectors.toList());
+                .filter(loanProcess -> readerId.equals(loanProcess.getUser().getId())).collect(Collectors.toList());
     }
 }

@@ -25,7 +25,7 @@ public class LoanProcess {
 
     @ManyToOne
     @JoinColumn(name="READER_ID")
-    private Reader reader;
+    private Reader user;
 
     @Column(name="BOOK_TITLE")
     private String bookTitle;
@@ -37,11 +37,5 @@ public class LoanProcess {
     @Column(name="RETURN_DATE")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate returnDate;
-
-//    public LoanProcess (int days, String title) {
-//        this.loanDate = LocalDate.now();
-//        this.returnDate = LocalDate.now().plusDays(days);
-//        this.bookTitle = title;
-//    }
 
 }

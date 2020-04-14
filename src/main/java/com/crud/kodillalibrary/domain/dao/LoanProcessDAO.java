@@ -11,5 +11,5 @@ import java.util.List;
 @Repository
 @Transactional
 public interface LoanProcessDAO extends CrudRepository<LoanProcess, Integer> {
-    List<LoanProcess> findByReader(Reader reader);
+    List<LoanProcess> findByUser(Reader reader);
 }

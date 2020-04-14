@@ -39,7 +39,7 @@ public class Reader {
 
     @OneToMany(
             targetEntity=LoanProcess.class,
-            mappedBy="reader",
+            mappedBy="user",
             cascade=CascadeType.ALL,
             fetch=FetchType.EAGER
     )
