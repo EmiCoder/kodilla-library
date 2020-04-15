@@ -93,6 +93,7 @@ public class LoanProcessController {
             if (isPossibleToRentTheTitle(loanProcessDTO.getBookTitle())) {
                 changeItemStatus(loanProcessDTO);
                 LoanProcessDTO result = mapper.mapToLoanPrecessDto(service.save(mapper.mapToLoan(loanProcessDTO)));
+                readerService.getReaderById(loanProcessDTO.getUser()).getLoanProcesses().add(mapper.mapToLoan(result));
                 createNewLoan(result);
                 return ResponseEntity.created(new URI("/lonaProcess/" + result.getId()))
                         .headers(HeaderUtil.createEntityCreationAlert("KodillaLibraryApplication", false, "loanProcess", result.getId().toString()))

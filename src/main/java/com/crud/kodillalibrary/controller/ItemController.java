@@ -2,6 +2,7 @@ package com.crud.kodillalibrary.controller;
 
 import com.crud.kodillalibrary.domain.dto.ItemDTO;
 import com.crud.kodillalibrary.mapper.ItemMapper;
+import com.crud.kodillalibrary.service.BookService;
 import com.crud.kodillalibrary.service.ItemService;
 import io.github.jhipster.web.util.HeaderUtil;
 import javassist.NotFoundException;
@@ -23,6 +24,8 @@ public class ItemController {
     ItemMapper itemMapper;
     @Autowired
     ItemService service;
+    @Autowired
+    private BookService bookService;
 
 
     @GetMapping
@@ -42,6 +45,7 @@ public class ItemController {
         }
 
         ItemDTO result = itemMapper.mapToItemDTO(service.saveItem(itemMapper.mapToItem(itemDTO)));
+        bookService.getBookById(result.getBookId()).getItems().add(itemMapper.mapToItem(result));
         return ResponseEntity.created(new URI("/item/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert("KodillaLibraryApplication", false, "item", result.getId().toString()))
                 .body(result);

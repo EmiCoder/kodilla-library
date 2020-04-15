@@ -1,8 +1,11 @@
 package com.crud.kodillalibrary.controller;
 import com.crud.kodillalibrary.domain.dto.LoanDTO;
 import com.crud.kodillalibrary.domain.dto.ReaderDTO;
+import com.crud.kodillalibrary.mapper.ItemMapper;
 import com.crud.kodillalibrary.mapper.LoanMapper;
+import com.crud.kodillalibrary.service.ItemService;
 import com.crud.kodillalibrary.service.LoanService;
+import com.crud.kodillalibrary.service.ReaderService;
 import io.github.jhipster.web.util.HeaderUtil;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +25,12 @@ public class LoanController {
     LoanMapper mapper;
     @Autowired
     LoanService service;
+    @Autowired
+    private ItemService itemService;
+    @Autowired
+    private  ReaderService readerService;
+    @Autowired
+    private LoanMapper loanMapper;
 
     @GetMapping
     public ResponseEntity<?> getLoans() {
@@ -30,7 +39,6 @@ public class LoanController {
             return ResponseEntity.ok().body(list);
         } else {
             return ResponseEntity.badRequest().body("List not found");
-//            throw new NotFoundException("List not found");
         }
     }
 
@@ -41,6 +49,8 @@ public class LoanController {
         }
 
         LoanDTO result = mapper.mapToLoanDTO(service.save(mapper.mapToLoan(loanDTO)));
+        itemService.getItemById(result.getItemId()).getLoans().add(loanMapper.mapToLoan(result));
+        readerService.getReaderById(result.getReaderId()).getLoans().add(loanMapper.mapToLoan(result));
         return ResponseEntity.created(new URI("/loan/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert("KodillaLibraryApplication", false, "loan", result.getId().toString()))
                 .body(result);
